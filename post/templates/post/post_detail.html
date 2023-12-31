@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Instagram Post</title>
+</head>
+<body>
+    <div class="post-container">
+        <div class="header">
+            <img class="profile-pic" src="{{post.user.userprofile.profile_photo.url}}" alt="User Profile Picture">
+            <h2 class="username">{{post.user.username}}</h2>
+        </div>
+        <img class="post-image" src="{{ post.image.url }}" alt="Instagram Post">
+        <div class="actions">
+            <div class="like-comment">
+                <i class="far fa-heart"></i>
+                <i class="far fa-comment"></i>
+                <i class="far fa-paper-plane"></i>
+            </div>
+            <i class="far fa-bookmark"></i>
+        </div>
+        <div class="caption">
+            <h3 class="username">{{post.user.username}}</h3>
+            <p class="post-caption">{{post.caption}}</p>
+        </div>
+    </div>
+</body>
+</html>
+

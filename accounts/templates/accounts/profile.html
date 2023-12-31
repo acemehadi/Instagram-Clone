@@ -1,0 +1,57 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %}{{ user_profile.full_name }} (@{{ user.username }}) {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'accounts/styles.css' %}">
+
+<div class="profile">
+    <div class="profile-header">
+        <h1>{{ user.username }}'s Profile</h1>
+    </div>
+
+    <div class="profile-image">
+        <img src="{{ user_profile.profile_photo.url }}" alt="{{ user.username }}">
+    </div>
+
+    <div class="profile-info">
+        <p>{{ user_profile.full_name }}</p>
+        <p>{{ user_profile.bio }}</p>
+    </div>
+    
+    <div class="edit-profile">
+        <a href="{% url 'accounts:edit' %}" class="btn btn-primary">Edit Profile</a>
+        {% if user != request.user %}
+            {% if request.user in user_profile.followers.all %}
+                <form action="{% url 'accounts:unfollow_user' user.username %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Unfollow</button>
+                </form>
+            {% else %}
+                <form action="{% url 'accounts:follow_user' user.username %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-info">Follow</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+<div class="user-stats">
+    <p><a href="{% url 'followers' user.username %}">{{ followers }} followers</a></p>
+    <p><a href="{% url 'following' user.username %}">{{ following }} following</a></p>
+</div>
+
+<div class="post-grid">
+    {% for post in user_posts %}
+        <div class="post">
+            <a href="{% url 'post:post_detail' post.uuid %}"><img src="{{ post.image.url }}" alt="{{ user.username }}"></a>
+        </div>
+    {% endfor %}
+</div>
+</div>
+
+{% endblock %}
+
