@@ -15,6 +15,7 @@
         <li><a href="{% url 'feed:feed' %}">Home</a></li>
         <li><a href="{% url 'profile' user.username %}">Profile</a></li>
         <li><a href="{% url 'post:create_post' %}">Create</a></li>
+        <li><a href="{% url 'direct:index' %}">Direct</a></li>
       </ul>
     </nav>
     {% block content %} {% endblock %}
