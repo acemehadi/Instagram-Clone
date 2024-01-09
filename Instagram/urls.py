@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('feed.urls', namespace='feed')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('direct/', include('direct.urls',namespace='direct')),
     path('search/', include('search.urls', namespace='search')),
     path('reels/', include('reels.urls', namespace='reels')),
     path('p/', include('post.urls', namespace='post')),
@@ -39,7 +40,7 @@ urlpatterns = [
 
              ]
          ),
-         ),
+    ),
 ]
 
 

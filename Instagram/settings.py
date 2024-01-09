@@ -36,9 +36,11 @@ INSTALLED_APPS = [
     'post',
     'feed',
     'accounts',
+    'direct',
     'search',
     'reels',
 #channels is for real time chat application
+    "daphne",
     'channels',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,7 +79,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Instagram.wsgi.application'
-ASGI_APPLICATION = 'Instagram.routing.application'
+ASGI_APPLICATION = 'Instagram.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default" : {
+        "BACKEND" : "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 
 # Database
